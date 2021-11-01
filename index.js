@@ -57,12 +57,11 @@ const {
   app.put('/api/restaurants/:id', async (req, res) => {
     try {
       // create a row in the database using sequelize create method
-      const update_ID = await Restaurant.update({
+      const update_ID = await Restaurant.update(req.body, {
         where: {
           id: req.params.id
         }
       });
-      
       // 200 = success
       res.status(200).send(update_ID);
     } catch (e) {

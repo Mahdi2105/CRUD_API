@@ -14,18 +14,6 @@ const {
   app.use(express.static('public'));
   app.use(express.urlencoded({extended : true}));
   
-  app.post('/api/restaurants', async (req, res) => {
-    try {
-      // create a row in the database using sequelize create method
-      const restaurant = await Restaurant.create(req.body);
-  
-      // 201 = created a resource
-      res.status(201).send(restaurant);
-    } catch (e) {
-      res.status(400).send(e.message);
-    }
-  });
-  
   app.get('/api/restaurants', async (req, res) => {
     try {
       // create a row in the database using sequelize create method
@@ -49,6 +37,18 @@ const {
       
       // 200 = success
       res.status(200).send(rest_ID);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
+
+  app.post('/api/restaurants', async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const restaurant = await Restaurant.create(req.body);
+  
+      // 201 = created a resource
+      res.status(201).send(restaurant);
     } catch (e) {
       res.status(400).send(e.message);
     }

@@ -1,0 +1,26 @@
+{
+  "name": "crud_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mahdi2105/CRUD_API.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mahdi2105/CRUD_API/issues"
+  },
+  "homepage": "https://github.com/Mahdi2105/CRUD_API#readme",
+  "keywords": [],
+  "dependencies": {
+    "jest": "^27.3.1",
+    "nodemon": "^2.0.14",
+    "sequelize": "^6.8.0",
+    "sqlite3": "^5.0.2"
+  }
+}

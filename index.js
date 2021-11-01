@@ -106,7 +106,7 @@ app.get("/api/menus/:id", async (req, res) => {
     });
 
     // 200 = success
-    res.status(200).send(rest_ID);
+    res.status(200).send(menu_ID);
   } catch (e) {
     res.status(400).send(e.message);
   }
@@ -224,6 +224,46 @@ app.delete("/api/menuItems/:id", async (req, res) => {
   }
 });
 
+app.post("/api/restaurants/:id/menus", async (req, res) => {
+  try {
+    // create a row in the database using sequelize create method
+    const restaurantEX = await Restaurant.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    const theMenu = await Menu.create(req.body);
+
+    restaurantEX.addMenu(theMenu);
+
+    // 200 = success
+    res.status(200).send(theMenu);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
+app.post("/api/menus/:id/menuItems", async (req, res) => {
+  try {
+    // create a row in the database using sequelize create method
+    const menuEX = await Menu.findOne({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    const theMenuItem = await MenuItem.create(req.body);
+
+    menuEX.addMenuItem(theMenuItem);
+
+    // 200 = success
+    res.status(200).send(theMenuItem);
+  } catch (e) {
+    res.status(400).send(e.message);
+  }
+});
+
 /**
  * Synchronize all models with db
  */
@@ -240,11 +280,3 @@ start()
   .catch((e) => console.log(`Caught error: ${e}`));
 
 app.listen(port, () => console.log(`Express server running on port ${port}`));
-
-// 1. create an endpoint that will delete a restaurant by ID (HTTP Method = delete)
-
-// 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)
-
-// 3. create a suite of menu and menu item routes that will CRUD each resource
-
-// 4. find a way to relate the menu items to the menu and the menu to the restaurant

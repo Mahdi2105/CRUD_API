@@ -11,6 +11,8 @@ const {
   
   // support req.body parsing
   app.use(express.json());
+  app.use(express.static('public'));
+  app.use(express.urlencoded({extended : true}));
   
   app.post('/api/restaurants', async (req, res) => {
     try {
@@ -31,6 +33,38 @@ const {
       
       // 200 = success
       res.status(200).send(restaurants);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
+
+  app.get('/api/restaurants/:id', async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const rest_ID = await Restaurant.findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      
+      // 200 = success
+      res.status(200).send(rest_ID);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
+
+  app.put('/api/restaurants/:id', async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const update_ID = await Restaurant.update({
+        where: {
+          id: req.params.id
+        }
+      });
+      
+      // 200 = success
+      res.status(200).send(update_ID);
     } catch (e) {
       res.status(400).send(e.message);
     }

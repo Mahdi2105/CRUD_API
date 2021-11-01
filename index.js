@@ -68,6 +68,21 @@ const {
       res.status(400).send(e.message);
     }
   });
+
+  app.delete('/api/restaurants/:id', async (req, res) => {
+    try {
+      // create a row in the database using sequelize create method
+      const delete_ID = await Restaurant.destroy({
+        where: {
+          id: req.params.id
+        }
+      });
+      // 200 = success
+      res.status(200).send(delete_ID);
+    } catch (e) {
+      res.status(400).send(e.message);
+    }
+  });
   
   // 1. create an endpoint that will delete a restaurant by ID (HTTP Method = delete)
   

@@ -241,8 +241,7 @@ const {
     .catch((e) => console.log(`Caught error: ${e}`));
   
   app.listen(port, () => console.log(`Express server running on port ${port}`));
-
-    
+  
   // 1. create an endpoint that will delete a restaurant by ID (HTTP Method = delete)
   
   // 2. create an endpoint that will update a restaurant by ID (HTTP Method = put)

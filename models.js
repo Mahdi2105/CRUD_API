@@ -9,6 +9,7 @@ const restaurantModel = {
   },
   imagelink: {
     type: Sequelize.STRING,
+    isUrl: true,
     allowNull: false,
   },
 };
@@ -27,6 +28,7 @@ const menuItemModel = {
   },
   price: {
     type: Sequelize.FLOAT, // may end up as "REAL" in sqlite
+    isFloat: true, 
     allowNull: false,
   },
 };
